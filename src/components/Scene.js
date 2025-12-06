@@ -5,6 +5,7 @@ import WallArt from "./WallArt";
 import { ART_PIECES } from "../data/artPieces";
 import useGalleryPages from "../hooks/useGalleryPages.ts";
 import { ENGLISH_FONT } from "../constants/fonts";
+import LoadingProgress from "./LoadingProgress";
 
 const Scene = () => {
   const { width: screenWidth } = useThree((state) => state.viewport);
@@ -46,16 +47,7 @@ const Scene = () => {
   const pages = useGalleryPages({ count: ART_PIECES.length, imageWidth: estimatedWidth, gap: 4, extra: 1.5, margin: 0.5 });
 
   return (
-    <Suspense
-      fallback={
-        <Html
-          style={{ fontSize: "6vw", whiteSpace: "nowrap", color: "white" }}
-          center
-        >
-          Loading...
-        </Html>
-      }
-    >
+    <Suspense fallback={<LoadingProgress />}>
       <ScrollControls
         horizontal
         damping={4}
