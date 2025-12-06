@@ -1,56 +1,60 @@
 export const ART_PIECES = [
   {
-    title: "noubi",
+    title: "无名",
     imgPath:
-      "https://cdn.jsdelivr.net/gh/liuyaanng/imageBed/202512061111616.jpeg",
+      "https://cdn.jsdelivr.net/gh/liuyaanng/imageBed/202512061736218.png",
   },
   {
-    title: "test2",
-    imgPath: "/test2.png",
+    title: "碎神",
+    imgPath: "https://cdn.jsdelivr.net/gh/liuyaanng/imageBed/202512061737495.png",
   },
   {
-    title: "Stillness",
-    imgPath: "/crane.jpeg",
+    title: "图书馆一角",
+    imgPath: "https://cdn.jsdelivr.net/gh/liuyaanng/imageBed/202512061738817.png",
   },
   {
-    title: "Foxy",
-    imgPath: "/foxy.jpeg",
+    title: "九灵狐狐",
+    imgPath: "https://cdn.jsdelivr.net/gh/liuyaanng/imageBed/202512061738000.png",
   },
   {
-    title: "Gentle Giant",
-    imgPath: "/horse_sketch.jpeg",
+    title: "血河修勾",
+    imgPath: "https://cdn.jsdelivr.net/gh/liuyaanng/imageBed/202512061739207.png",
   },
   {
-    title: "Purity",
-    imgPath: "/kindness.jpeg",
+    title: "血相",
+    imgPath: "https://cdn.jsdelivr.net/gh/liuyaanng/imageBed/202512061740558.png",
   },
   {
-    title: "Lonely Together",
-    imgPath: "/lonely_together.jpeg",
+    title: "剑胆琴心",
+    imgPath: "https://cdn.jsdelivr.net/gh/liuyaanng/imageBed/202512061741907.png",
   },
   {
-    title: "Owl",
-    imgPath: "/owl.jpeg",
+    title: "蓝天白云下的碎梦",
+    imgPath: "https://cdn.jsdelivr.net/gh/liuyaanng/imageBed/202512061743148.png",
   },
   {
-    title: "Menace",
-    imgPath: "/panther.jpeg",
+    title: "神相",
+    imgPath: "https://cdn.jsdelivr.net/gh/liuyaanng/imageBed/202512061744946.png",
   },
   {
-    title: "Paradise",
-    imgPath: "/paradise.jpeg",
+    title: "夏天与神相猫猫",
+    imgPath: "https://cdn.jsdelivr.net/gh/liuyaanng/imageBed/202512061745606.png",
   },
   {
-    title: "Friendship",
-    imgPath: "/sprited_away.jpeg",
+    title: "夏天与神相猫猫",
+    imgPath: "https://cdn.jsdelivr.net/gh/liuyaanng/imageBed/202512061745531.png",
   },
   {
-    title: "Wanderlust",
-    imgPath: "/wonder.jpeg",
+    title: "流光花与碎梦",
+    imgPath: "https://cdn.jsdelivr.net/gh/liuyaanng/imageBed/202512061746128.png",
   },
   {
-    title: "Serenity",
-    imgPath: "/forest.jpeg",
+    title: "碎梦豹豹",
+    imgPath: "https://cdn.jsdelivr.net/gh/liuyaanng/imageBed/202512061747908.png",
+  },
+  {
+    title: "神相是猫猫的证据",
+    imgPath: "https://cdn.jsdelivr.net/gh/liuyaanng/imageBed/202512061749271.png",
   },
 ];
 

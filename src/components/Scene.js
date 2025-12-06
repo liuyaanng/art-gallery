@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+import { Suspense, useState, useCallback } from "react";
 import { useThree } from "@react-three/fiber";
 import { ScrollControls, Scroll, Html, Text } from "@react-three/drei";
 import WallArt from "./WallArt";
@@ -10,17 +10,39 @@ const Scene = () => {
   console.log("screenWidth", screenWidth);
   const textScale = screenWidth < 5.5 ? 2 : 4;
 
-  const imageWidth = 3
-const gap = 4
-const step = imageWidth + gap + 1
+  const gap = 4;
+  const [imageWidths, setImageWidths] = useState({});
 
-const { width: vw } = useThree((s) => s.viewport)
+  // 处理画框宽度变化的回调
+  const handleWidthChange = useCallback((index, width) => {
+    setImageWidths((prev) => {
+      if (prev[index] !== width) {
+        return { ...prev, [index]: width };
+      }
+      return prev;
+    });
+  }, []);
 
-const introPadding = vw * 1.2        // 给开头 Text 留一屏左右
-const tailPadding = vw * 1.0         // 给最后留一屏左右
-const contentWidth = introPadding + ART_PIECES.length * step + tailPadding
+  // 计算每个画框前面所有画框的宽度数组
+  const getPreviousWidths = useCallback((index) => {
+    const widths = [];
+    for (let i = 0; i < index; i++) {
+      if (imageWidths[i] !== undefined) {
+        widths.push(imageWidths[i]);
+      } else {
+        // 如果宽度还未加载，使用估算值
+        widths.push(3);
+      }
+    }
+    return widths;
+  }, [imageWidths]);
 
-const pages = useGalleryPages({ count: ART_PIECES.length, imageWidth: 3, gap: 4, extra: 1.5, margin: 0.5 })
+  const { width: vw } = useThree((s) => s.viewport);
+
+  // 计算总宽度用于页面计算
+  const totalWidth = Object.values(imageWidths).reduce((sum, width) => sum + width + gap, 0);
+  const estimatedWidth = totalWidth > 0 ? totalWidth / ART_PIECES.length : 3;
+  const pages = useGalleryPages({ count: ART_PIECES.length, imageWidth: estimatedWidth, gap: 4, extra: 1.5, margin: 0.5 });
 
   return (
     <Suspense
@@ -49,7 +71,7 @@ const pages = useGalleryPages({ count: ART_PIECES.length, imageWidth: 3, gap: 4,
             font="https://fonts.gstatic.com/s/sacramento/v5/buEzpo6gcdjy0EiZMBUG4C0f-w.woff"
             castShadow
           >
-            Creativity is allowing yourself to make mistakes.
+            A quiet gallery for little painter.
           </Text>
           <Text
             position-z={1}
@@ -60,19 +82,20 @@ const pages = useGalleryPages({ count: ART_PIECES.length, imageWidth: 3, gap: 4,
             font="https://fonts.gstatic.com/s/sacramento/v5/buEzpo6gcdjy0EiZMBUG4C0f-w.woff"
             castShadow
           >
-            Art is knowing which ones to keep.
-          </Text>
-          <Text
-            position={[0, -0.5, 1.5]}
-            anchorX="center"
-            anchorY="top"
-            font="https://fonts.gstatic.com/s/sacramento/v5/buEzpo6gcdjy0EiZMBUG4C0f-w.woff"
-          >
-            ~ Scott Adams
+            Where her light can linger.
           </Text>
 
+
           {ART_PIECES.map((art, i) => {
-            return <WallArt key={i} i={i} art={art} />;
+            return (
+              <WallArt
+                key={i}
+                i={i}
+                art={art}
+                previousWidths={getPreviousWidths(i)}
+                onWidthChange={handleWidthChange}
+              />
+            );
           })}
         </Scroll>
       </ScrollControls>
