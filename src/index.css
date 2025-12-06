@@ -1,3 +1,9 @@
+/* 
+ * 字体声明已移除
+ * Three.js Text 组件直接通过 JavaScript 加载字体文件（从 public/fonts 目录）
+ * 不需要在 CSS 中声明 @font-face
+ */
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

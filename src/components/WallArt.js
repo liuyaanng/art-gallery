@@ -2,6 +2,7 @@ import { useLoader, useThree } from "@react-three/fiber";
 import { SpotLight, Text } from "@react-three/drei";
 import { TextureLoader } from "three";
 import { useMemo, useEffect } from "react";
+import { CHINESE_FONT } from "../constants/fonts";
 
 const WallArt = (props) => {
   const { art, i, previousWidths = [], onWidthChange } = props;
@@ -84,7 +85,7 @@ const WallArt = (props) => {
             color="black"
             anchorX="center"
             anchorY="middle"
-            font="https://fonts.gstatic.com/s/sacramento/v5/buEzpo6gcdjy0EiZMBUG4C0f-w.woff"
+            font={CHINESE_FONT}
           >
             {art.title}
           </Text>

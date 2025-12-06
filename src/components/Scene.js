@@ -4,11 +4,12 @@ import { ScrollControls, Scroll, Html, Text } from "@react-three/drei";
 import WallArt from "./WallArt";
 import { ART_PIECES } from "../data/artPieces";
 import useGalleryPages from "../hooks/useGalleryPages.ts";
+import { ENGLISH_FONT } from "../constants/fonts";
 
 const Scene = () => {
   const { width: screenWidth } = useThree((state) => state.viewport);
   console.log("screenWidth", screenWidth);
-  const textScale = screenWidth < 5.5 ? 2 : 4;
+  const textScale = screenWidth < 5.5 ? 2 : 6;
 
   const gap = 4;
   const [imageWidths, setImageWidths] = useState({});
@@ -68,7 +69,7 @@ const Scene = () => {
             anchorY="bottom"
             scale={[textScale, textScale, textScale]}
             color="#94A6FF"
-            font="https://fonts.gstatic.com/s/sacramento/v5/buEzpo6gcdjy0EiZMBUG4C0f-w.woff"
+            font={ENGLISH_FONT}
             castShadow
           >
             A quiet gallery for little painter.
@@ -79,7 +80,7 @@ const Scene = () => {
             anchorY="top"
             scale={[textScale, textScale, textScale]}
             color="#FBA90A"
-            font="https://fonts.gstatic.com/s/sacramento/v5/buEzpo6gcdjy0EiZMBUG4C0f-w.woff"
+            font={ENGLISH_FONT}
             castShadow
           >
             Where her light can linger.
