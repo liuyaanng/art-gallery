@@ -41,10 +41,6 @@ export const ART_PIECES = [
     imgPath: "https://api.godliuyang.wang/v1/storage/buckets/arts/files/69342557001fdcc8c446/view?project=693421cb0038ddff8dd1&mode=admin",
   },
   {
-    title: "夏天与神相猫猫",
-    imgPath: "https://api.godliuyang.wang/v1/storage/buckets/arts/files/6934255e002398e2e1c2/view?project=693421cb0038ddff8dd1&mode=admin",
-  },
-  {
     title: "流光花与碎梦",
     imgPath: "https://api.godliuyang.wang/v1/storage/buckets/arts/files/6934256b0038dca49e99/view?project=693421cb0038ddff8dd1&mode=admin",
   },
@@ -55,6 +51,13 @@ export const ART_PIECES = [
   {
     title: "神相是猫猫的证据",
     imgPath: "https://api.godliuyang.wang/v1/storage/buckets/arts/files/69342577001aee229a1d/view?project=693421cb0038ddff8dd1&mode=admin",
+  },
+  {
+    title: "猫狗双全",
+    imgPath: "https://api.godliuyang.wang/v1/storage/buckets/arts/files/693429b000196dc8b49a/view?project=693421cb0038ddff8dd1&mode=admin",
+  },{
+    title: "无名",
+    imgPath: "https://api.godliuyang.wang/v1/storage/buckets/arts/files/693429b6001dfeee6094/view?project=693421cb0038ddff8dd1&mode=admin",
   },
 ];
 
