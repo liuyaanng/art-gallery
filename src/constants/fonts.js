@@ -12,7 +12,7 @@ const getPublicFontUrl = (fontName) => {
 
 // 字体文件路径（需要将字体文件放在 public/fonts 目录）
 const englishFont = getPublicFontUrl("english.woff");
-const chineseFont = getPublicFontUrl("chinese.ttf");
+const chineseFont = 'https://api.godliuyang.wang/v1/storage/buckets/6934259600000324a77c/files/6934259c00011095c155/view?project=693421cb0038ddff8dd1&mode=admin';
 
 /**
  * 字体配置对象
