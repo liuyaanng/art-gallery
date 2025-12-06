@@ -46,6 +46,24 @@ const WallArt = (props) => {
     return startOffset + totalPreviousWidth + gap + imageWidth / 2;
   }, [previousWidths, imageWidth, gap, w]);
 
+  // 根据标题文本长度动态计算标题背景宽度
+  const titleWidth = useMemo(() => {
+    if (!art.title) return 1.25; // 默认宽度
+    
+    const textScale = 2; // Text 组件的 scale
+    const charWidth = 0.2; // 每个字符的估算宽度（考虑中文字符和 scale=2）
+    const padding = 0.1; // 左右内边距
+    
+    // 计算文本宽度：字符数 * 字符宽度 + 内边距
+    const textWidth = art.title.length * charWidth * textScale + padding;
+    
+    // 设置最小和最大宽度
+    const minWidth = 0.6;
+    const maxWidth = Math.max(imageWidth * 0.8, minWidth); // 不超过画框宽度的 80%
+    
+    return Math.max(minWidth, Math.min(textWidth, maxWidth));
+  }, [art.title, imageWidth]);
+
   return (
     <>
       <group>
@@ -77,7 +95,7 @@ const WallArt = (props) => {
         </mesh>
 
         <mesh position={[xPosition, -(imageHeight / 2 + 0.75), 0]}>
-          <planeGeometry args={[1.25, 0.5]} />
+          <planeGeometry args={[titleWidth, 0.5]} />
           <meshStandardMaterial color={0xfaebd7} />
           <Text
             position-z={0}

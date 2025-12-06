@@ -81,4 +81,3 @@ export const DEFAULT_FONT_CONFIG = getFontConfig("ENGLISH");
  * 所有字体的 URL 数组（用于预加载）
  */
 export const FONT_URLS = Object.values(FONT_CONFIGS).map((config) => config.url);
-
