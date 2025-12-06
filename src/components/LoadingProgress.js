@@ -21,7 +21,6 @@ const LoadingProgress = () => {
             fontSize: "clamp(16px, 4vw, 32px)",
             fontWeight: "500",
             marginBottom: "10px",
-            fontFamily: ENGLISH_FONT,
           }}
         >
           loading...
@@ -33,7 +32,6 @@ const LoadingProgress = () => {
             fontSize: "clamp(14px, 3vw, 24px)",
             fontWeight: "400",
             opacity: 0.9,
-            fontFamily: ENGLISH_FONT,
           }}
         >
           {Math.round(progress)}%
