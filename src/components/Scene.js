@@ -26,34 +26,41 @@ const Scene = () => {
   }, []);
 
   // 计算每个画框前面所有画框的宽度数组
-  const getPreviousWidths = useCallback((index) => {
-    const widths = [];
-    for (let i = 0; i < index; i++) {
-      if (imageWidths[i] !== undefined) {
-        widths.push(imageWidths[i]);
-      } else {
-        // 如果宽度还未加载，使用估算值
-        widths.push(3);
+  const getPreviousWidths = useCallback(
+    (index) => {
+      const widths = [];
+      for (let i = 0; i < index; i++) {
+        if (imageWidths[i] !== undefined) {
+          widths.push(imageWidths[i]);
+        } else {
+          // 如果宽度还未加载，使用估算值
+          widths.push(3);
+        }
       }
-    }
-    return widths;
-  }, [imageWidths]);
+      return widths;
+    },
+    [imageWidths],
+  );
 
   const { width: vw } = useThree((s) => s.viewport);
 
   // 计算总宽度用于页面计算
-  const totalWidth = Object.values(imageWidths).reduce((sum, width) => sum + width + gap, 0);
+  const totalWidth = Object.values(imageWidths).reduce(
+    (sum, width) => sum + width + gap,
+    0,
+  );
   const estimatedWidth = totalWidth > 0 ? totalWidth / ART_PIECES.length : 3;
-  const pages = useGalleryPages({ count: ART_PIECES.length, imageWidth: estimatedWidth, gap: 4, extra: 1.5, margin: 0.5 });
+  const pages = useGalleryPages({
+    count: ART_PIECES.length,
+    imageWidth: estimatedWidth,
+    gap: 4,
+    extra: 1.5,
+    margin: 0.5,
+  });
 
   return (
     <Suspense fallback={<LoadingProgress />}>
-      <ScrollControls
-        horizontal
-        damping={4}
-        pages={pages}
-        distance={1}
-      >
+      <ScrollControls horizontal damping={4} pages={pages} distance={1}>
         <Scroll>
           <Text
             position-z={0}
@@ -64,7 +71,7 @@ const Scene = () => {
             font={ENGLISH_FONT}
             castShadow
           >
-            A quiet gallery for little painter.
+            Creativity is allowing yourself to make mistakes.
           </Text>
           <Text
             position-z={1}
@@ -75,9 +82,8 @@ const Scene = () => {
             font={ENGLISH_FONT}
             castShadow
           >
-            Where her light can linger.
+            Art is knowing which ones to keep.
           </Text>
-
 
           {ART_PIECES.map((art, i) => {
             return (
@@ -97,4 +103,3 @@ const Scene = () => {
 };
 
 export default Scene;
-
