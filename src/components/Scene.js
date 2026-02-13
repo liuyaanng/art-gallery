@@ -1,11 +1,11 @@
-import { Suspense, useState, useCallback } from "react";
+import { Scroll, ScrollControls, Text } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
-import { ScrollControls, Scroll, Html, Text } from "@react-three/drei";
-import WallArt from "./WallArt";
+import { Suspense, useCallback, useState } from "react";
+import { ENGLISH_FONT } from "../constants/fonts";
 import { ART_PIECES } from "../data/artPieces";
 import useGalleryPages from "../hooks/useGalleryPages.ts";
-import { ENGLISH_FONT } from "../constants/fonts";
 import LoadingProgress from "./LoadingProgress";
+import WallArt from "./WallArt";
 
 const Scene = () => {
   const { width: screenWidth } = useThree((state) => state.viewport);
@@ -42,7 +42,7 @@ const Scene = () => {
     [imageWidths],
   );
 
-  const { width: vw } = useThree((s) => s.viewport);
+  // const { width: vw } = useThree((s) => s.viewport);
 
   // 计算总宽度用于页面计算
   const totalWidth = Object.values(imageWidths).reduce(

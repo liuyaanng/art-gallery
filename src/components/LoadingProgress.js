@@ -1,5 +1,4 @@
 import { Html, useProgress } from "@react-three/drei";
-import { ENGLISH_FONT } from "../constants/fonts";
 
 const LoadingProgress = () => {
   const { progress } = useProgress();
@@ -25,7 +24,7 @@ const LoadingProgress = () => {
         >
           loading...
         </div>
-                
+
         {/* 百分比文字 */}
         <div
           style={{
@@ -42,4 +41,3 @@ const LoadingProgress = () => {
 };
 
 export default LoadingProgress;
-
