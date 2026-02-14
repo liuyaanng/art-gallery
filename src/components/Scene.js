@@ -1,13 +1,14 @@
 import { Scroll, ScrollControls, Text } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
-import { Suspense, useCallback, useState } from "react";
+import { Suspense, useCallback, useMemo, useState } from "react";
 import { ENGLISH_FONT } from "../constants/fonts";
 import { ART_PIECES } from "../data/artPieces";
 import useGalleryPages from "../hooks/useGalleryPages.ts";
 import LoadingProgress from "./LoadingProgress";
+import SecretDoor from "./SecretDoor";
 import WallArt from "./WallArt";
 
-const Scene = () => {
+const Scene = ({ onDoorClick }) => {
   const { width: screenWidth } = useThree((state) => state.viewport);
   console.log("screenWidth", screenWidth);
   const textScale = screenWidth < 5.5 ? 2 : 6;
@@ -50,13 +51,25 @@ const Scene = () => {
     0,
   );
   const estimatedWidth = totalWidth > 0 ? totalWidth / ART_PIECES.length : 3;
+  // 隐藏消息的额外滚动空间
+  const hiddenSectionWidth = screenWidth * 1.5;
   const pages = useGalleryPages({
     count: ART_PIECES.length,
     imageWidth: estimatedWidth,
     gap: 4,
-    extra: 1.5,
+    extra: 1.5 + hiddenSectionWidth / screenWidth,
     margin: 0.5,
   });
+
+  // 隐藏消息的 x 位置：最后一幅画之后再留一段距离
+  const hiddenMessageX = useMemo(() => {
+    const startOffset = screenWidth * 0.1;
+    const allWidths = Object.values(imageWidths);
+    if (allWidths.length === 0)
+      return startOffset + ART_PIECES.length * (3 + gap) + screenWidth;
+    const totalPrev = allWidths.reduce((sum, width) => sum + width + gap, 0);
+    return startOffset + totalPrev + screenWidth * 0.8;
+  }, [imageWidths, gap, screenWidth]);
 
   return (
     <Suspense fallback={<LoadingProgress />}>
@@ -96,6 +109,12 @@ const Scene = () => {
               />
             );
           })}
+
+          {/* 隐藏入口 —— 滚动到画廊最末尾才能看到的门 */}
+          <SecretDoor
+            position={[hiddenMessageX, 0, 0]}
+            onDoorClick={onDoorClick}
+          />
         </Scroll>
       </ScrollControls>
     </Suspense>
